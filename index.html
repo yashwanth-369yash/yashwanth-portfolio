@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Yashwanth D - BCA Student at Tumkur University | Full Stack Developer & Data Scientist">
+    <title>Yashwanth D | Full Stack Developer & Data Scientist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+        
+        :root { --primary: #00d4ff; }
+        
+        * { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        
+        .hero-bg {
+            background: radial-gradient(circle at 30% 20%, #00d4ff10 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, #7b2cbf20 0%, transparent 50%);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgb(0 212 255 / 0.25);
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #00d4ff;
+        }
+        .nav-link:hover:after { width: 100%; }
+        
+        .section-header:after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, #00d4ff, #7b2cbf);
+            bottom: -8px;
+            left: 0;
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="bg-zinc-950 text-white font-sans overflow-x-hidden">
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-zinc-950/90 backdrop-blur-lg border-b border-white/10">
+        <div class="max-w-screen-2xl mx-auto px-8 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-x-3">
+                <div class="w-9 h-9 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-2xl flex items-center justify-center text-xl font-bold">YD</div>
+                <h1 class="text-2xl font-semibold tracking-tighter">Yashwanth D</h1>
+            </div>
+
+            <div class="hidden md:flex items-center gap-x-10 text-sm font-medium">
+                <a onclick="smoothScrollTo('about')" class="nav-link cursor-pointer">About</a>
+                <a onclick="smoothScrollTo('skills')" class="nav-link cursor-pointer">Skills</a>
+                <a onclick="smoothScrollTo('projects')" class="nav-link cursor-pointer">Projects</a>
+                <a onclick="smoothScrollTo('education')" class="nav-link cursor-pointer">Education</a>
+                <a onclick="smoothScrollTo('contact')" class="nav-link cursor-pointer">Contact</a>
+            </div>
+
+            <div class="flex items-center gap-x-4">
+                <div class="hidden sm:flex items-center gap-x-2 bg-emerald-950 text-emerald-400 text-xs font-medium px-4 h-9 rounded-3xl border border-emerald-500/30">
+                    <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                    OPEN TO WORK
+                </div>
+                
+                <a onclick="downloadResume()" class="flex items-center gap-x-2 bg-white text-zinc-950 hover:bg-cyan-400 hover:text-white px-6 h-10 rounded-3xl font-semibold text-sm">
+                    <i class="fa-solid fa-download"></i> Resume
+                </a>
+
+                <button onclick="toggleMobileMenu()" class="md:hidden w-10 h-10 flex items-center justify-center text-2xl">
+                    <i id="mobile-icon" class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero-bg min-h-screen flex items-center pt-20">
+        <div class="max-w-screen-2xl mx-auto px-8 grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8">
+                <div class="inline-flex items-center gap-x-3 bg-white/5 px-6 h-12 rounded-3xl border border-white/10">
+                    <i class="fa-solid fa-location-dot text-cyan-400"></i>
+                    Tiptur (Native) • Tumkur (Studying), Karnataka
+                </div>
+                
+                <h1 class="text-7xl md:text-8xl font-bold tracking-tighter leading-none">
+                    Hi, I'm <span class="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Yashwanth D</span>
+                </h1>
+                
+                <p class="text-4xl font-medium text-zinc-400">BCA Student</p>
+                <p class="text-4xl font-medium text-zinc-400 flex items-center gap-x-4">
+                    Full Stack Developer <span class="text-cyan-400">•</span> Data Scientist
+                </p>
+                
+                <p class="max-w-lg text-xl text-zinc-400">
+                    Passionate about building scalable web applications and extracting meaningful insights from data. 
+                    Currently pursuing BCA at Tumkur University.
+                </p>
+
+                <div class="flex flex-wrap gap-4">
+                    <button onclick="smoothScrollTo('contact')" 
+                            class="bg-gradient-to-r from-cyan-400 to-purple-600 hover:from-cyan-500 hover:to-purple-700 px-10 h-14 rounded-3xl font-semibold text-lg flex items-center gap-x-3">
+                        <i class="fa-solid fa-paper-plane"></i> Let's Connect
+                    </button>
+                    <button onclick="smoothScrollTo('projects')" 
+                            class="border border-white/30 hover:bg-white/5 px-10 h-14 rounded-3xl font-semibold text-lg">
+                        View My Work
+                    </button>
+                </div>
+            </div>
+
+            <!-- Your Photo -->
+            <div class="flex justify-center">
+                <div class="relative w-80 h-80 md:w-96 md:h-96">
+                    <div class="absolute inset-0 bg-gradient-to-br from-cyan-400/20 to-purple-600/20 rounded-[4rem] blur-3xl"></div>
+                    <div class="relative w-full h-full bg-zinc-900 rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+                        <img src="https://files.oaiusercontent.com/file-QLdKV?se=2026-04-09T00%3A00%3A00Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D3628800%2C%20immutable&rscd=attachment%3B%20filename%3D1000085500&sig=..." 
+                             alt="Yashwanth D" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    
+                    <!-- Floating badges -->
+                    <div class="absolute -top-6 -left-6 bg-white/10 backdrop-blur-md px-6 py-3 rounded-3xl border border-white/10">
+                        <div class="flex items-center gap-x-2">
+                            <i class="fa-solid fa-code text-cyan-400"></i>
+                            <div class="text-sm">
+                                <p class="font-medium">Full Stack</p>
+                                <p class="text-xs">MERN • Next.js</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute -bottom-6 -right-6 bg-white/10 backdrop-blur-md px-6 py-3 rounded-3xl border border-white/10">
+                        <div class="flex items-center gap-x-2">
+                            <i class="fa-solid fa-chart-line text-purple-400"></i>
+                            <div class="text-sm">
+                                <p class="font-medium">Data Science</p>
+                                <p class="text-xs">Python • ML</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 text-center">
+            <p class="text-xs tracking-widest text-zinc-400">SCROLL TO EXPLORE</p>
+            <i class="fa-solid fa-chevron-down animate-bounce text-cyan-400 mt-2 block"></i>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="max-w-screen-2xl mx-auto px-8 py-24">
+        <div class="grid md:grid-cols-12 gap-16">
+            <div class="md:col-span-5">
+                <span class="text-cyan-400 text-sm font-medium tracking-widest">CHAPTER 01</span>
+                <h2 class="section-header text-5xl font-semibold tracking-tighter mt-3">About Me</h2>
+                <p class="mt-8 text-zinc-400 text-lg leading-relaxed">
+                    I'm from Tiptur, Karnataka and currently pursuing my BCA at Tumkur University. 
+                    I specialize in Full Stack Development and Data Science — building modern web applications 
+                    and turning raw data into valuable insights.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="bg-white/5 py-24">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <span class="text-cyan-400 text-sm font-medium tracking-widest">CHAPTER 02</span>
+            <h2 class="section-header text-5xl font-semibold tracking-tighter mt-3">Technical Arsenal</h2>
+            
+            <div class="mt-16 grid md:grid-cols-2 gap-16">
+                <div>
+                    <h3 class="text-2xl font-semibold flex items-center gap-x-3 mb-10">
+                        <i class="fa-solid fa-laptop-code text-cyan-400"></i> Full Stack Development
+                    </h3>
+                    <div class="space-y-10">
+                        <div>
+                            <div class="flex justify-between mb-2"><span>React / Next.js</span><span class="text-cyan-400">95%</span></div>
+                            <div class="h-2.5 bg-white/10 rounded-full"><div class="h-full w-[95%] bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2"><span>Node.js + Express</span><span class="text-cyan-400">90%</span></div>
+                            <div class="h-2.5 bg-white/10 rounded-full"><div class="h-full w-[90%] bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2"><span>Tailwind CSS</span><span class="text-cyan-400">97%</span></div>
+                            <div class="h-2.5 bg-white/10 rounded-full"><div class="h-full w-[97%] bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full"></div></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-semibold flex items-center gap-x-3 mb-10">
+                        <i class="fa-solid fa-brain text-purple-400"></i> Data Science & Machine Learning
+                    </h3>
+                    <div class="space-y-10">
+                        <div>
+                            <div class="flex justify-between mb-2"><span>Python, Pandas, NumPy</span><span class="text-purple-400">96%</span></div>
+                            <div class="h-2.5 bg-white/10 rounded-full"><div class="h-full w-[96%] bg-gradient-to-r from-purple-400 to-cyan-400 rounded-full"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2"><span>Scikit-learn / TensorFlow</span><span class="text-purple-400">85%</span></div>
+                            <div class="h-2.5 bg-white/10 rounded-full"><div class="h-full w-[85%] bg-gradient-to-r from-purple-400 to-cyan-400 rounded-full"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2"><span>Power BI & SQL</span><span class="text-purple-400">92%</span></div>
+                            <div class="h-2.5 bg-white/10 rounded-full"><div class="h-full w-[92%] bg-gradient-to-r from-purple-400 to-cyan-400 rounded-full"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION - EMPTY -->
+    <section id="projects" class="max-w-screen-2xl mx-auto px-8 py-24">
+        <span class="text-cyan-400 text-sm font-medium tracking-widest">CHAPTER 03</span>
+        <h2 class="section-header text-5xl font-semibold tracking-tighter mt-3">Featured Projects</h2>
+        <p class="text-zinc-400 mt-4">Coming soon — I'll add my completed projects here once they're ready.</p>
+        
+        <div class="mt-16 border border-dashed border-white/20 rounded-3xl h-96 flex flex-col items-center justify-center text-center">
+            <i class="fa-solid fa-folder-open text-6xl text-zinc-500 mb-6"></i>
+            <h3 class="text-2xl font-medium text-zinc-400">Projects section is empty for now</h3>
+            <p class="text-zinc-500 max-w-xs mt-3">
+                Once I finish my projects, I'll showcase them with live links and tech details.
+            </p>
+            <button onclick="smoothScrollTo('contact')" 
+                    class="mt-10 px-8 py-3 border border-white/30 hover:bg-white/5 rounded-3xl text-sm">
+                Interested in collaborating?
+            </button>
+        </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="bg-white/5 py-24">
+        <div class="max-w-screen-2xl mx-auto px-8 text-center">
+            <span class="text-cyan-400 text-sm font-medium tracking-widest">CHAPTER 04</span>
+            <h2 class="section-header text-5xl font-semibold tracking-tighter mt-3 mx-auto w-fit">Education</h2>
+            <div class="mt-12 bg-white/5 rounded-3xl p-12 max-w-2xl mx-auto">
+                <h3 class="text-3xl font-semibold">Bachelor of Computer Applications (BCA)</h3>
+                <p class="text-cyan-400 mt-2">Tumkur University • Tumkur, Karnataka</p>
+                <p class="text-zinc-400 mt-1">Currently Pursuing (Expected Graduation: 2025)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="max-w-screen-2xl mx-auto px-8 py-24">
+        <div class="grid md:grid-cols-12 gap-16">
+            <div class="md:col-span-5">
+                <span class="text-cyan-400 text-sm font-medium tracking-widest">CHAPTER 05 • LET'S CONNECT</span>
+                <h2 class="section-header text-5xl font-semibold tracking-tighter mt-3">Let's build something great together</h2>
+                
+                <div class="mt-12 space-y-8">
+                    <div class="flex items-center gap-6">
+                        <i class="fa-solid fa-envelope text-3xl text-cyan-400"></i>
+                        <div>
+                            <a href="mailto:yashwanthd101@gmail.com" class="text-xl hover:text-cyan-400">yashwanthd101@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-6">
+                        <i class="fa-solid fa-phone text-3xl text-cyan-400"></i>
+                        <div>
+                            <a href="tel:+918310987172" class="text-xl hover:text-cyan-400">+91 83109 87172</a>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-6">
+                        <i class="fa-brands fa-instagram text-3xl text-pink-400"></i>
+                        <div>
+                            <a href="https://instagram.com/_flex.in.peace_" target="_blank" class="text-xl hover:text-cyan-400">@_flex.in.peace_</a>
+                        </div>
+                    </div>
+                    <!-- GitHub Added Here -->
+                    <div class="flex items-center gap-6">
+                        <i class="fa-brands fa-github text-3xl text-white"></i>
+                        <div>
+                            <a href="https://github.com/YOUR-USERNAME" target="_blank" 
+                               class="text-xl hover:text-cyan-400">github.com/YOUR-USERNAME</a>
+                            <p class="text-xs text-zinc-500">Add your GitHub profile link here later</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-7 bg-white/5 rounded-3xl p-12">
+                <form onsubmit="handleSubmit(event)" class="space-y-8">
+                    <div class="grid grid-cols-2 gap-6">
+                        <input type="text" id="name" placeholder="Your Name" required
+                               class="bg-transparent border border-white/20 focus:border-cyan-400 rounded-3xl px-6 py-5 outline-none">
+                        <input type="email" id="email" placeholder="Your Email" required
+                               class="bg-transparent border border-white/20 focus:border-cyan-400 rounded-3xl px-6 py-5 outline-none">
+                    </div>
+                    <textarea id="message" rows="6" placeholder="Your Message" required
+                              class="w-full bg-transparent border border-white/20 focus:border-cyan-400 rounded-3xl px-6 py-5 outline-none"></textarea>
+                    <button type="submit" 
+                            class="w-full h-16 bg-gradient-to-r from-cyan-400 to-purple-600 rounded-3xl text-xl font-semibold">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 py-12">
+        <div class="max-w-screen-2xl mx-auto px-8 text-center text-zinc-400 text-sm">
+            © 2026 Yashwanth D • From Tiptur, Karnataka
+        </div>
+    </footer>
+
+    <script>
+        function smoothScrollTo(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            alert("Mobile menu coming soon in full version");
+        }
+
+        function downloadResume() {
+            alert("Resume download link will be added here. Replace this with your actual PDF link when ready.");
+        }
+
+        function handleSubmit(e) {
+            e.preventDefault();
+            alert("Thank you! Your message has been received (demo). In production this would send an email.");
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
