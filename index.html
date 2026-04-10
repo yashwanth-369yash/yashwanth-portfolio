@@ -11,10 +11,6 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
         
-        :root { --primary: #00d4ff; }
-        
-        * { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        
         .hero-bg {
             background: radial-gradient(circle at 30% 20%, #00d4ff10 0%, transparent 50%),
                         radial-gradient(circle at 70% 80%, #7b2cbf20 0%, transparent 50%);
@@ -41,39 +37,57 @@
             left: 0;
             border-radius: 9999px;
         }
+
+        /* Photo Animation */
+        .profile-photo {
+            animation: float 6s ease-in-out infinite;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .profile-photo:hover {
+            transform: scale(1.08) rotate(2deg);
+            box-shadow: 0 0 60px rgba(0, 212, 255, 0.5);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .photo-container {
+            position: relative;
+        }
+        
+        .photo-container::after {
+            content: '';
+            position: absolute;
+            inset: -15px;
+            background: linear-gradient(45deg, #00d4ff, #7b2cbf, #00d4ff);
+            border-radius: 9999px;
+            z-index: -1;
+            opacity: 0.15;
+            animation: borderPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes borderPulse {
+            0%, 100% { opacity: 0.15; }
+            50% { opacity: 0.35; }
+        }
     </style>
 </head>
 <body class="bg-zinc-950 text-white font-sans overflow-x-hidden">
-    <!-- NAVBAR -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-zinc-950/90 backdrop-blur-lg border-b border-white/10">
+    <!-- Minimal NAVBAR -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-zinc-950/95 backdrop-blur-lg border-b border-white/10">
         <div class="max-w-screen-2xl mx-auto px-6 md:px-8 py-5 flex items-center justify-between">
+            <!-- YD Logo Only -->
             <div class="flex items-center gap-x-3">
-                <div class="w-9 h-9 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-2xl flex items-center justify-center text-xl font-bold">YD</div>
-                <h1 class="text-2xl font-semibold tracking-tighter">Yashwanth D</h1>
+                <div class="w-9 h-9 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-2xl flex items-center justify-center text-2xl font-bold">YD</div>
             </div>
 
-            <div class="hidden md:flex items-center gap-x-10 text-sm font-medium">
-                <a onclick="smoothScrollTo('about')" class="nav-link cursor-pointer">About</a>
-                <a onclick="smoothScrollTo('skills')" class="nav-link cursor-pointer">Skills</a>
-                <a onclick="smoothScrollTo('projects')" class="nav-link cursor-pointer">Projects</a>
-                <a onclick="smoothScrollTo('education')" class="nav-link cursor-pointer">Education</a>
-                <a onclick="smoothScrollTo('contact')" class="nav-link cursor-pointer">Contact</a>
-            </div>
-
-            <div class="flex items-center gap-x-4">
-                <div class="hidden sm:flex items-center gap-x-2 bg-emerald-950 text-emerald-400 text-xs font-medium px-4 h-9 rounded-3xl border border-emerald-500/30">
-                    <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
-                    OPEN TO WORK
-                </div>
-                
-                <a onclick="downloadResume()" class="flex items-center gap-x-2 bg-white text-zinc-950 hover:bg-cyan-400 hover:text-white px-6 h-10 rounded-3xl font-semibold text-sm">
-                    <i class="fa-solid fa-download"></i> Resume
-                </a>
-
-                <button onclick="toggleMobileMenu()" class="md:hidden w-10 h-10 flex items-center justify-center text-2xl">
-                    <i id="mobile-icon" class="fa-solid fa-bars"></i>
-                </button>
-            </div>
+            <!-- Hamburger Menu -->
+            <button onclick="toggleMobileMenu()" class="w-10 h-10 flex items-center justify-center text-3xl">
+                <i id="mobile-icon" class="fa-solid fa-bars"></i>
+            </button>
         </div>
 
         <!-- Mobile Menu -->
@@ -88,63 +102,61 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION - Fixed for Mobile & Desktop -->
+    <!-- HERO - Photo under Name with Animation -->
     <section class="hero-bg min-h-screen flex items-center pt-20">
-        <div class="max-w-screen-2xl mx-auto px-6 md:px-8 grid md:grid-cols-2 gap-12 items-center">
-            <!-- Left Content -->
-            <div class="space-y-8">
-                <div class="inline-flex items-center gap-x-3 bg-white/5 px-6 h-12 rounded-3xl border border-white/10 text-sm">
-                    <i class="fa-solid fa-location-dot text-cyan-400"></i>
-                    Tiptur (Native) • TumkurUniversity(Studying), Karnataka
-                </div>
-                
-                <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-none">
+        <div class="max-w-screen-2xl mx-auto px-6 md:px-8">
+            <div class="max-w-2xl mx-auto text-center">
+                <!-- Name -->
+                <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tighter leading-none">
                     Hi, I'm <span class="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Yashwanth D</span>
                 </h1>
-                
+
+                <!-- Animated Photo -->
+                <div class="photo-container flex justify-center my-12">
+                    <div class="profile-photo relative w-64 h-64 md:w-80 md:h-80">
+                        <div class="absolute inset-0 bg-gradient-to-br from-cyan-400/30 to-purple-600/30 rounded-[4rem] blur-3xl"></div>
+                        <div class="relative w-full h-full bg-zinc-900 rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+                            <img src="image.jpg.jpeg" 
+                                 alt="Yashwanth D" 
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -top-6 -left-6 bg-white/10 backdrop-blur-md px-5 py-3 rounded-3xl border border-white/10 text-sm">
+                        <i class="fa-solid fa-code text-cyan-400"></i> Full Stack
+                        </div>
+                    <div class="absolute -bottom-6 -right-6 bg-white/10 backdrop-blur-md px-5 py-3 rounded-3xl border border-white/10 text-sm">
+                        <i class="fa-solid fa-chart-line text-purple-400"></i> Data Science
+                    </div>
+                    </div>
+                </div>
+
+                <!-- BCA Student -->
                 <p class="text-3xl md:text-4xl font-medium text-zinc-400">BCA Student</p>
-                
-                <div class="flex flex-wrap items-center gap-x-4 text-3xl md:text-4xl font-medium text-zinc-400">
+
+                <!-- Roles -->
+                <div class="flex flex-wrap justify-center items-center gap-x-4 text-3xl md:text-4xl font-medium text-zinc-400 mt-3">
                     <span>Full Stack Developer</span>
                     <span class="text-cyan-400">•</span>
                     <span>Data Scientist</span>
                 </div>
-                
-                <p class="max-w-lg text-base md:text-lg text-zinc-400 leading-relaxed">
+
+                <!-- Bio -->
+                <p class="max-w-lg mx-auto text-base md:text-lg text-zinc-400 leading-relaxed mt-8">
                     Passionate about building scalable web applications and extracting meaningful insights from data. 
                     Currently pursuing BCA at Tumkur University.
                 </p>
 
-                <!-- Buttons - Clean on both Mobile & Desktop -->
-                <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                <!-- Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center pt-10">
                     <button onclick="smoothScrollTo('contact')" 
-                            class="flex-1 bg-gradient-to-r from-cyan-400 to-purple-600 hover:from-cyan-500 hover:to-purple-700 px-8 py-4 rounded-3xl font-semibold text-lg flex items-center justify-center gap-x-3">
+                            class="flex-1 sm:flex-none bg-gradient-to-r from-cyan-400 to-purple-600 hover:from-cyan-500 hover:to-purple-700 px-10 py-4 rounded-3xl font-semibold text-lg flex items-center justify-center gap-x-3">
                         <i class="fa-solid fa-paper-plane"></i> 
                         Let's Connect
                     </button>
                     
                     <button onclick="smoothScrollTo('projects')" 
-                            class="flex-1 border-2 border-white/30 hover:bg-white/10 px-8 py-4 rounded-3xl font-semibold text-lg">
+                            class="flex-1 sm:flex-none border-2 border-white/30 hover:bg-white/10 px-10 py-4 rounded-3xl font-semibold text-lg">
                         View My Work
                     </button>
-                </div>
-            </div>
-
-            <!-- Photo -->
-            <div class="flex justify-center mt-12 md:mt-0">
-                <div class="relative w-72 h-72 md:w-96 md:h-96">
-                    <div class="absolute inset-0 bg-gradient-to-br from-cyan-400/20 to-purple-600/20 rounded-[4rem] blur-3xl"></div>
-                    <div class="relative w-full h-full bg-zinc-900 rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-                        <img src="image.jpg.jpeg" 
-                             alt="Yashwanth D" 
-                             class="w-full h-full object-cover">
-                    </div>
-                    <div class="absolute -top-6 -left-6 bg-white/10 backdrop-blur-md px-5 py-3 rounded-3xl border border-white/10 text-sm">
-                        <i class="fa-solid fa-code text-cyan-400"></i> Full Stack
-                    </div>
-                    <div class="absolute -bottom-6 -right-6 bg-white/10 backdrop-blur-md px-5 py-3 rounded-3xl border border-white/10 text-sm">
-                        <i class="fa-solid fa-chart-line text-purple-400"></i> Data Science
-                    </div>
                 </div>
             </div>
         </div>
@@ -294,7 +306,6 @@
     </footer>
 
     <script>
-        // EmailJS Setup - Replace these with your actual values from emailjs.com
         emailjs.init("nQiKiai_3L05wOwPD");
 
         document.getElementById('contact-form').addEventListener('submit', function(e) {
