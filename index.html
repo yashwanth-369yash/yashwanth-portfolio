@@ -12,8 +12,14 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
         
         .hero-bg {
-            background: radial-gradient(circle at 30% 20%, #00d4ff10 0%, transparent 50%),
-                        radial-gradient(circle at 70% 80%, #7b2cbf20 0%, transparent 50%);
+            background: radial-gradient(circle at 30% 20%, #00d4ff15 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, #7b2cbf15 0%, transparent 50%);
+            animation: bgPulse 15s ease-in-out infinite;
+        }
+
+        @keyframes bgPulse {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
         
         .nav-link:after {
@@ -26,66 +32,66 @@
             background-color: #00d4ff;
         }
         .nav-link:hover:after { width: 100%; }
-        
-        .section-header:after {
-            content: '';
-            position: absolute;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(to right, #00d4ff, #7b2cbf);
-            bottom: -8px;
-            left: 0;
-            border-radius: 9999px;
-        }
 
-        /* Photo Animation */
+        /* Attractive Photo Animation */
         .profile-photo {
-            animation: float 6s ease-in-out infinite;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: photoFloat 8s ease-in-out infinite;
+            transition: all 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
         }
         
         .profile-photo:hover {
-            transform: scale(1.08) rotate(2deg);
-            box-shadow: 0 0 60px rgba(0, 212, 255, 0.5);
+            transform: scale(1.12) rotate(3deg);
+            box-shadow: 0 0 80px rgba(0, 212, 255, 0.6);
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+        @keyframes photoFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(2deg); }
         }
 
-        .photo-container {
+        .photo-glow {
             position: relative;
         }
         
-        .photo-container::after {
+        .photo-glow::before {
             content: '';
             position: absolute;
-            inset: -15px;
-            background: linear-gradient(45deg, #00d4ff, #7b2cbf, #00d4ff);
+            inset: -20px;
+            background: conic-gradient(from 0deg, transparent, #00d4ff, #7b2cbf, transparent);
             border-radius: 9999px;
             z-index: -1;
-            opacity: 0.15;
-            animation: borderPulse 4s ease-in-out infinite;
+            animation: glowRotate 12s linear infinite;
+            opacity: 0.25;
         }
 
-        @keyframes borderPulse {
-            0%, 100% { opacity: 0.15; }
-            50% { opacity: 0.35; }
+        @keyframes glowRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body class="bg-zinc-950 text-white font-sans overflow-x-hidden">
-    <!-- Minimal NAVBAR -->
+
+    <!-- NAVBAR -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-zinc-950/95 backdrop-blur-lg border-b border-white/10">
         <div class="max-w-screen-2xl mx-auto px-6 md:px-8 py-5 flex items-center justify-between">
-            <!-- YD Logo Only -->
+            <!-- Left: YD Logo -->
             <div class="flex items-center gap-x-3">
                 <div class="w-9 h-9 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-2xl flex items-center justify-center text-2xl font-bold">YD</div>
+                <span class="hidden sm:block text-xl font-semibold tracking-tight">Yashwanth D</span>
             </div>
 
-            <!-- Hamburger Menu -->
-            <button onclick="toggleMobileMenu()" class="w-10 h-10 flex items-center justify-center text-3xl">
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-x-10 text-sm font-medium">
+                <a onclick="smoothScrollTo('about')" class="nav-link cursor-pointer">About</a>
+                <a onclick="smoothScrollTo('skills')" class="nav-link cursor-pointer">Skills</a>
+                <a onclick="smoothScrollTo('projects')" class="nav-link cursor-pointer">Projects</a>
+                <a onclick="smoothScrollTo('education')" class="nav-link cursor-pointer">Education</a>
+                <a onclick="smoothScrollTo('contact')" class="nav-link cursor-pointer">Contact</a>
+            </div>
+
+            <!-- Right: Hamburger -->
+            <button onclick="toggleMobileMenu()" class="w-11 h-11 flex items-center justify-center text-3xl hover:text-cyan-400">
                 <i id="mobile-icon" class="fa-solid fa-bars"></i>
             </button>
         </div>
@@ -102,55 +108,42 @@
         </div>
     </nav>
 
-    <!-- HERO - Photo under Name with Animation -->
+    <!-- HERO -->
     <section class="hero-bg min-h-screen flex items-center pt-20">
         <div class="max-w-screen-2xl mx-auto px-6 md:px-8">
             <div class="max-w-2xl mx-auto text-center">
-                <!-- Name -->
                 <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tighter leading-none">
                     Hi, I'm <span class="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Yashwanth D</span>
                 </h1>
 
-                <!-- Animated Photo -->
-                <div class="photo-container flex justify-center my-12">
+                <!-- Attractive Animated Photo -->
+                <div class="photo-glow flex justify-center my-12">
                     <div class="profile-photo relative w-64 h-64 md:w-80 md:h-80">
-                        <div class="absolute inset-0 bg-gradient-to-br from-cyan-400/30 to-purple-600/30 rounded-[4rem] blur-3xl"></div>
                         <div class="relative w-full h-full bg-zinc-900 rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
                             <img src="image.jpg.jpeg" 
                                  alt="Yashwanth D" 
                                  class="w-full h-full object-cover">
                         </div>
-                        <div class="absolute -top-6 -left-6 bg-white/10 backdrop-blur-md px-5 py-3 rounded-3xl border border-white/10 text-sm">
-                        <i class="fa-solid fa-code text-cyan-400"></i> Full Stack
-                        </div>
-                    <div class="absolute -bottom-6 -right-6 bg-white/10 backdrop-blur-md px-5 py-3 rounded-3xl border border-white/10 text-sm">
-                        <i class="fa-solid fa-chart-line text-purple-400"></i> Data Science
-                    </div>
                     </div>
                 </div>
 
-                <!-- BCA Student -->
                 <p class="text-3xl md:text-4xl font-medium text-zinc-400">BCA Student</p>
 
-                <!-- Roles -->
                 <div class="flex flex-wrap justify-center items-center gap-x-4 text-3xl md:text-4xl font-medium text-zinc-400 mt-3">
                     <span>Full Stack Developer</span>
                     <span class="text-cyan-400">•</span>
                     <span>Data Scientist</span>
                 </div>
 
-                <!-- Bio -->
                 <p class="max-w-lg mx-auto text-base md:text-lg text-zinc-400 leading-relaxed mt-8">
                     Passionate about building scalable web applications and extracting meaningful insights from data. 
                     Currently pursuing BCA at Tumkur University.
                 </p>
 
-                <!-- Buttons -->
                 <div class="flex flex-col sm:flex-row gap-4 justify-center pt-10">
                     <button onclick="smoothScrollTo('contact')" 
                             class="flex-1 sm:flex-none bg-gradient-to-r from-cyan-400 to-purple-600 hover:from-cyan-500 hover:to-purple-700 px-10 py-4 rounded-3xl font-semibold text-lg flex items-center justify-center gap-x-3">
-                        <i class="fa-solid fa-paper-plane"></i> 
-                        Let's Connect
+                        <i class="fa-solid fa-paper-plane"></i> Let's Connect
                     </button>
                     
                     <button onclick="smoothScrollTo('projects')" 
@@ -226,7 +219,6 @@
             </div>
         </div>
     </section>
-
     <!-- PROJECTS -->
     <section id="projects" class="max-w-screen-2xl mx-auto px-6 md:px-8 py-24">
         <span class="text-cyan-400 text-sm font-medium tracking-widest">CHAPTER 03</span>
@@ -241,7 +233,6 @@
             </p>
         </div>
     </section>
-
     <!-- EDUCATION -->
     <section id="education" class="bg-white/5 py-24">
         <div class="max-w-screen-2xl mx-auto px-6 md:px-8 text-center">
@@ -254,7 +245,6 @@
             </div>
         </div>
     </section>
-
     <!-- CONTACT -->
     <section id="contact" class="max-w-screen-2xl mx-auto px-6 md:px-8 py-24">
         <div class="grid md:grid-cols-12 gap-16">
@@ -323,7 +313,7 @@
 
             emailjs.send('service_86gr75t', 'template_jqievio', templateParams)
                 .then(() => {
-                    alert('✅ Message sent successfully! I will reply soon.');
+                    alert('✅ Message sent successfully!');
                     document.getElementById('contact-form').reset();
                 })
                 .catch(() => {
